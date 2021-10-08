@@ -9,6 +9,7 @@ session = requests.Session()
 
 def main():
     data = pd.read_csv("urls.csv")
+    count = 0
 
     for url in data.values:
         begin = datetime.now().timestamp()
@@ -17,6 +18,8 @@ def main():
             if page.find(itemprop="offers").find(itemprop="price") and page.find(itemprop="offers").find(title="Авторизуйтесь, чтобы совершать покупки"):
                 data = data.append({"URL": url[0]})
                 data.to_csv("products_url.csv", index=False)
+                count += 1
+                print(f"[+] Add {count}")
         except:
             pass
         end = datetime.now().timestamp()
