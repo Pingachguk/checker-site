@@ -13,6 +13,7 @@ def main():
 
     for url in data.values:
         begin = datetime.now().timestamp()
+        print(url[0])
         page = bs4.BeautifulSoup(session.get(url[0]).text, "html.parser")
         try:
             if page.find(itemprop="offers").find(itemprop="price") and page.find(itemprop="offers").find(title="Авторизуйтесь, чтобы совершать покупки"):
